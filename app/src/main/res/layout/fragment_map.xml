@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <fragment android:id="@+id/mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/whiteBackground"
+        />
+
+    <View android:id="@+id/whiteBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/durationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="00:00:00"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/whiteBackground"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/durationLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="Duración"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/distanceTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/durationTextView"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/distanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@id/distanceLabelTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/durationLabelTextView" />
+
+    <TextView android:id="@+id/distanceLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distanceTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Distancia (Km)"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/rhythmTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="00:00"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toStartOf="@id/calorieTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/distanceLabelTextView" />
+
+    <TextView
+        android:id="@+id/rhythmLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="Ritmo medio (min/km)"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/distanceTextView"
+        app:layout_constraintEnd_toEndOf="@id/rhythmTextView"
+        app:layout_constraintStart_toStartOf="@id/rhythmTextView"
+        app:layout_constraintTop_toBottomOf="@id/rhythmTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/calorieTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="0"
+        android:textColor="@color/black"
+
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@id/calorieLabelLabelTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rhythmTextView"
+        app:layout_constraintTop_toTopOf="@id/rhythmTextView" />
+
+    <TextView android:id="@+id/calorieLabelLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/calorieTextView"
+        app:layout_constraintEnd_toEndOf="@id/calorieTextView"
+        app:layout_constraintTop_toTopOf="@id/rhythmLabelTextView"
+        app:layout_constraintBottom_toBottomOf="@id/rhythmLabelTextView"
+        android:text="Calorías"
+        android:textColor="@color/black" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
