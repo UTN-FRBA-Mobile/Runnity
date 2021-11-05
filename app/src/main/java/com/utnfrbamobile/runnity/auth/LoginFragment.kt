@@ -1,19 +1,18 @@
 package com.utnfrbamobile.runnity.auth
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.utnfrbamobile.runnity.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-
-    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -28,30 +27,17 @@ class LoginFragment : Fragment() {
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
 
-            listener!!.onLogin(username, password)
+            when{
+                username.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show()
+                password.isEmpty() -> Toast.makeText(activity, "Ingrese su password", Toast.LENGTH_SHORT).show()
+                else -> {
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMapFragment())
+                }
+            }
         }
 
         binding.signUpButton.setOnClickListener {
-            listener!!.onSignUp()
+            // Ir a la pantalla de signUp
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    interface OnFragmentInteractionListener {
-        fun onLogin(username: String, password: String)
-        fun onSignUp()
     }
 }
