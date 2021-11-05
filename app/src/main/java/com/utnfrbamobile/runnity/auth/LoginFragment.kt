@@ -30,9 +30,7 @@ class LoginFragment : Fragment() {
             when{
                 username.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show()
                 password.isEmpty() -> Toast.makeText(activity, "Ingrese su password", Toast.LENGTH_SHORT).show()
-                else -> {
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMapFragment())
-                }
+                else -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMapFragment())
             }
         }
 
