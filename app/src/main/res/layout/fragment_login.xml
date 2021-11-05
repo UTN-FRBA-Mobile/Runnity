@@ -13,8 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/poppins"
+        android:fontFamily="@font/poppins_bold"
         android:text="Runnity"
+        android:textColor="@android:color/black"
         android:textSize="46dp" />
 
     <TextView
@@ -22,9 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="24dp"
         android:layout_marginTop="15dp"
-        android:text="Ingreso"/>
+        android:fontFamily="@font/poppins_bold"
+        android:text="Ingreso"
+        android:textColor="@android:color/black"
+        android:textSize="24dp" />
 
     <EditText
         android:id="@+id/username"
@@ -52,13 +55,30 @@
         android:layout_marginTop="45dp"
         android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/signUp_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_200"
+        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:text="Registrate aquí"/>
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:id="@+id/signUp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins"
+            android:text="¿Aún no sos parte de Runnity? "
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/signUp_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins"
+            android:text="Registrate aquí"
+            android:textColor="@color/purple_200" />
+    </LinearLayout>
 
 </LinearLayout>
