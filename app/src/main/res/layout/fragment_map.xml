@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -14,14 +15,15 @@
         app:layout_constraintBottom_toTopOf="@id/whiteBackground"
         />
 
-    <View android:id="@+id/whiteBackground"
+    <View
+        android:id="@+id/whiteBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mapView"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapView" />
 
     <TextView
         android:id="@+id/durationTextView"
@@ -49,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/durationTextView"
         app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/distanceTextView"
@@ -70,19 +72,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/distanceTextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rhythmTextView"
         android:text="Distancia (Km)"
         android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/rhythmTextView"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_bold"
         android:text="00:00"
         android:textColor="@color/black"
-        android:textSize="35dp"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@id/rhythmLabelTextView"
         app:layout_constraintEnd_toStartOf="@id/calorieTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/distanceLabelTextView" />
@@ -94,7 +97,7 @@
         android:fontFamily="@font/poppins"
         android:text="Ritmo medio (min/km)"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/distanceTextView"
+        app:layout_constraintBottom_toTopOf="@id/startButton"
         app:layout_constraintEnd_toEndOf="@id/rhythmTextView"
         app:layout_constraintStart_toStartOf="@id/rhythmTextView"
         app:layout_constraintTop_toBottomOf="@id/rhythmTextView"
@@ -103,30 +106,33 @@
     <TextView
         android:id="@+id/calorieTextView"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:fontFamily="@font/poppins_bold"
         android:text="0"
         android:textColor="@color/black"
-
-        android:textSize="35dp"
-        app:layout_constraintBottom_toTopOf="@id/calorieLabelLabelTextView"
+        android:textSize="32dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rhythmTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/rhythmTextView"
-        app:layout_constraintTop_toTopOf="@id/rhythmTextView" />
+        app:layout_constraintStart_toEndOf="@id/rhythmTextView" />
 
-    <TextView android:id="@+id/calorieLabelLabelTextView"
+    <TextView
+        android:id="@+id/calorieLabelLabelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/calorieTextView"
-        app:layout_constraintEnd_toEndOf="@id/calorieTextView"
-        app:layout_constraintTop_toTopOf="@id/rhythmLabelTextView"
-        app:layout_constraintBottom_toBottomOf="@id/rhythmLabelTextView"
         android:text="Calorías"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rhythmLabelTextView"
+        app:layout_constraintEnd_toEndOf="@id/calorieTextView"
+        app:layout_constraintStart_toStartOf="@id/calorieTextView" />
 
-
-
-
+    <Button
+        android:id="@+id/startButton"
+        style="@style/ActionButton"
+        android:text="Comenzar"
+        app:layout_constraintBottom_toBottomOf="@+id/whiteBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calorieLabelLabelTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
