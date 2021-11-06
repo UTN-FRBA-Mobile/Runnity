@@ -5,18 +5,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".auth.SignUpStep1Fragment"
-    android:padding="10dp">
+    android:paddingHorizontal="@dimen/layout_padding_horizontal"
+    android:paddingVertical="10dp">
 
     <TextView
-        android:id="@+id/welcome"
+        android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Bienvenidx"
+        android:text="@string/profile"
         android:textColor="@android:color/black"
-        android:textSize="46dp" />
+        android:textSize="46sp" />
 
     <TextView
         android:id="@+id/complete_profile"
@@ -25,15 +26,16 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Completa tu perfil para continuar"
+        android:text="@string/subtitle_profile_creation"
         android:textColor="@android:color/black"
-        android:textSize="18dp" />
+        android:textSize="18sp"
+        android:textAlignment="center"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
-        android:hint="Nombre">
+        android:hint="@string/name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name"
@@ -48,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="Fecha de nacimiento">
+        android:hint="@string/birth_date">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/birthdate"
@@ -65,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="Peso (Kg)">
+        android:hint="@string/weight">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/weight"
@@ -77,10 +79,8 @@
 
     <Button
         android:id="@+id/continue_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CONTINUAR"
-        android:layout_marginTop="45dp"
-        android:layout_gravity="center"/>
+        style="@style/ActionButton"
+        android:text="@string/continue_button_text"
+        android:layout_marginTop="45dp" />
 
 </LinearLayout>
