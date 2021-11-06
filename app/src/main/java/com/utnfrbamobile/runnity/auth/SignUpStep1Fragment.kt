@@ -7,35 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.utnfrbamobile.runnity.databinding.FragmentLoginBinding
+import com.utnfrbamobile.runnity.databinding.FragmentSignUpStep1Binding
 
-class LoginFragment : Fragment() {
+class SignUpStep1Fragment : Fragment() {
 
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentSignUpStep1Binding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpStep1Binding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.loginButton.setOnClickListener {
+        binding.signUpButton.setOnClickListener {
             val username = binding.username.text.toString()
             val password = binding.password.text.toString()
 
             when{
                 username.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre de usuario", Toast.LENGTH_SHORT).show()
                 password.isEmpty() -> Toast.makeText(activity, "Ingrese su password", Toast.LENGTH_SHORT).show()
-                else -> findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMapFragment())
+                else -> findNavController().navigate(SignUpStep1FragmentDirections.actionSignUpStep1FragmentToSignUpStep2Fragment())
             }
-        }
-
-        binding.signUpButton.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpStep1Fragment())
         }
     }
 }

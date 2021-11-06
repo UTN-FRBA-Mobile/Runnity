@@ -12,9 +12,29 @@
         <action
             android:id="@+id/action_loginFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpStep1Fragment"
+            app:destination="@id/signUpStep1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.utnfrbamobile.runnity.ui.MapFragment"
         android:label="MapFragment" />
+    <fragment
+        android:id="@+id/signUpStep1Fragment"
+        android:name="com.utnfrbamobile.runnity.auth.SignUpStep1Fragment"
+        android:label="fragment_sign_up_step_1"
+        tools:layout="@layout/fragment_sign_up_step_1" >
+        <action
+            android:id="@+id/action_signUpStep1Fragment_to_signUpStep2Fragment"
+            app:destination="@id/signUpStep2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpStep2Fragment"
+        android:name="com.utnfrbamobile.runnity.auth.SignUpStep2Fragment"
+        android:label="SignUpStep2Fragment" >
+        <action
+            android:id="@+id/action_signUpStep2Fragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 </navigation>
