@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:id="@+id/navigation"
-    app:startDestination="@id/mapFragment">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.utnfrbamobile.runnity.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpStep1Fragment"
+            app:destination="@id/signUpStep1Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.utnfrbamobile.runnity.ui.MapFragment"
-        android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+        android:label="MapFragment" />
+    <fragment
+        android:id="@+id/signUpStep1Fragment"
+        android:name="com.utnfrbamobile.runnity.auth.SignUpStep1Fragment"
+        android:label="fragment_sign_up_step_1"
+        tools:layout="@layout/fragment_sign_up_step_1" >
+        <action
+            android:id="@+id/action_signUpStep1Fragment_to_signUpStep2Fragment"
+            app:destination="@id/signUpStep2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpStep2Fragment"
+        android:name="com.utnfrbamobile.runnity.auth.SignUpStep2Fragment"
+        android:label="SignUpStep2Fragment" >
+        <action
+            android:id="@+id/action_signUpStep2Fragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 </navigation>
