@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".auth.LoginFragment"
+    tools:context=".auth.SignUpStep1Fragment"
     android:padding="10dp">
 
     <TextView
@@ -19,13 +19,13 @@
         android:textSize="46dp" />
 
     <TextView
-        android:id="@+id/ingreso_title"
+        android:id="@+id/sign_up_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Ingreso"
+        android:text="Registro"
         android:textColor="@android:color/black"
         android:textSize="24dp" />
 
@@ -48,37 +48,11 @@
         android:hint="Contraseña"/>
 
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/sign_up_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INGRESAR"
+        android:text="REGISTRARME"
         android:layout_marginTop="45dp"
         android:layout_gravity="center"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp">
-
-        <TextView
-            android:id="@+id/sign_up_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins"
-            android:text="¿Aún no sos parte de Runnity? "
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/sign_up_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins"
-            android:text="Registrate aquí"
-            android:textColor="@color/purple_200" />
-    </LinearLayout>
 
 </LinearLayout>
