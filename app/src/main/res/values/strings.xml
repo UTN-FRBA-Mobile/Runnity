@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">Runnity</string>
     <string name="google_api_key">AIzaSyBD92xGIpgQWgIQKhtWza6vC6eKsdqiIe8</string>
+    <string name="subtitle_profile_creation">Completa tu perfil para continuar</string>
+    <string name="profile">Perfil</string>
+    <string name="continue_button_text">Continuar</string>
+    <string name="sign_in">Ingreso</string>
+    <string name="user_name">Nombre de usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="log_in">Ingresar</string>
+    <string name="register_here_label">¿Aún no sos parte de Runnity?</string>
+    <string name="sign_up_here">Registrate aquí</string>
+    <string name="duration_label">Duración</string>
+    <string name="distance_label">Distancia (Km)</string>
+    <string name="rhythm_label">Ritmo medio (min/km)</string>
+    <string name="calories_label">Calorías</string>
+    <string name="start_button">Comenzar</string>
+    <string name="duration_default">00:00:00</string>
+    <string name="distance_default">00</string>
+    <string name="rhythm_default">00:00</string>
+    <string name="calories_default">0</string>
+    <string name="register_label">Registro</string>
+    <string name="register_button">Registrarme</string>
+    <string name="name">Nombre</string>
+    <string name="birth_date">Fecha de nacimiento</string>
+    <string name="weight">Peso (Kg)</string>
 </resources>

@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".auth.SignUpStep1Fragment"
-    android:padding="10dp">
+    android:paddingHorizontal="@dimen/layout_padding_horizontal"
+    android:paddingVertical="10dp">
 
     <TextView
         android:id="@+id/app_title"
@@ -14,9 +15,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Runnity"
+        android:text="@string/app_name"
         android:textColor="@android:color/black"
-        android:textSize="46dp" />
+        android:textSize="46sp" />
 
     <TextView
         android:id="@+id/sign_up_title"
@@ -25,15 +26,15 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Registro"
+        android:text="@string/register_label"
         android:textColor="@android:color/black"
-        android:textSize="24dp" />
+        android:textSize="24sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
-        android:hint="Nombre de usuario">
+        android:hint="@string/user_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
@@ -47,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="Contraseña">
+        android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -59,10 +60,8 @@
 
     <Button
         android:id="@+id/sign_up_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="REGISTRARME"
-        android:layout_marginTop="45dp"
-        android:layout_gravity="center"/>
+        style="@style/ActionButton"
+        android:text="@string/register_button"
+        android:layout_marginTop="45dp"/>
 
 </LinearLayout>
