@@ -24,7 +24,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.VISIBLE
+        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.VISIBLE // Esto se va a mover a la Home
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 

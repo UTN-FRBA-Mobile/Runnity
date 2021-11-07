@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.utnfrbamobile.runnity.R
 import com.utnfrbamobile.runnity.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -16,6 +17,7 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.GONE
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }

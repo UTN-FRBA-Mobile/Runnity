@@ -17,8 +17,7 @@ import java.util.*
 import com.google.android.material.datepicker.CompositeDateValidator
 
 import com.google.android.material.datepicker.DateValidatorPointForward
-
-
+import com.utnfrbamobile.runnity.R
 
 
 class SignUpStep2Fragment : Fragment() {
@@ -29,6 +28,7 @@ class SignUpStep2Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.GONE
         _binding = FragmentSignUpStep2Binding.inflate(inflater, container, false)
         return binding.root
     }
