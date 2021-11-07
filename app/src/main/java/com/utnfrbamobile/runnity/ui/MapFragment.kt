@@ -24,6 +24,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.VISIBLE
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
 
