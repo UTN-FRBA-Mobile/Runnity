@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/whiteBackground"
+        app:layout_constraintBottom_toTopOf="@id/durationTextView"
         />
 
     <View
@@ -29,12 +29,12 @@
     <TextView
         android:id="@+id/durationTextView"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/duration_default"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/whiteBackground"
@@ -57,11 +57,11 @@
     <TextView
         android:id="@+id/distanceTextView"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/distance_default"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@id/distanceLabelTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,12 +80,12 @@
     <TextView
         android:id="@+id/rhythmTextView"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="38dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/rhythm_default"
         android:textColor="@color/black"
-        android:textSize="32sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/rhythmLabelTextView"
         app:layout_constraintEnd_toStartOf="@id/calorieTextView"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,11 +107,11 @@
     <TextView
         android:id="@+id/calorieTextView"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="38dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/calories_default"
         android:textColor="@color/black"
-        android:textSize="32sp"
+        android:textSize="30sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/rhythmTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/rhythmTextView" />
