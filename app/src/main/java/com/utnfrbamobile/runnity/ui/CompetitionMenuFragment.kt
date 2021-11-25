@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.utnfrbamobile.runnity.R
+import com.utnfrbamobile.runnity.domain.PendingRace
+import com.utnfrbamobile.runnity.domain.PendingRaceAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,14 +32,23 @@ class CompetitionMenuFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        //val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(this.context)
+        //linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val adapter = PendingRaceAdapter()
+        adapter.data = listOf(PendingRace(1,"5K", "Esteban Quito"),
+            PendingRace(2, "5K", "Usain Bolt"),
+            PendingRace(2, "2K", "Otro Nombre"),
+            PendingRace(2, "10K", "Franco Curi"))
         requireActivity().findViewById<View>(R.id.nav_view).visibility = View.VISIBLE
-        return inflater.inflate(R.layout.fragment_competition_menu, container, false)
+        val competitionMenuView: View = inflater.inflate(R.layout.fragment_competition_menu, container, false)
+        competitionMenuView.findViewById<RecyclerView>(R.id.pendingRaceList).adapter = adapter
+        return competitionMenuView
     }
 
     companion object {
