@@ -31,4 +31,7 @@
     <string name="new_race_button">Nueva carrera</string>
     <string name="new_race_button_label">Elegí contra quién querés correr</string>
     <string name="pending_label">Pendientes</string>
+    <string name="pending_race_label">Carrera Pendiente</string>
+    <string name="pending_race_detail">5K | Juan Pérez VS Esteban Quito</string>
+    <string name="participate_button_label">PARTICIPAR</string>
 </resources>
