@@ -10,11 +10,11 @@
         android:label="Ingreso"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
-        <action
             android:id="@+id/action_loginFragment_to_signUpStep1Fragment"
             app:destination="@id/signUpStep1Fragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_competitionMenuFragment"
+            app:destination="@id/competitionMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -34,12 +34,17 @@
         android:name="com.utnfrbamobile.runnity.auth.SignUpStep2Fragment"
         android:label="Registro" >
         <action
-            android:id="@+id/action_signUpStep2Fragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            android:id="@+id/action_signUpStep2Fragment_to_competitionMenuFragment"
+            app:destination="@id/competitionMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.utnfrbamobile.runnity.ProfileFragment"
+        android:name="com.utnfrbamobile.runnity.ui.ProfileFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/competitionMenuFragment"
+        android:name="com.utnfrbamobile.runnity.ui.CompetitionMenuFragment"
+        android:label="Competencias"
+        tools:layout="@layout/fragment_competition_menu" />
 </navigation>

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mapFragment"
+        android:id="@+id/competitionMenuFragment"
         android:icon="@drawable/ic_baseline_directions_run_24"
         android:title="@string/competencies_nav_menu" />
 

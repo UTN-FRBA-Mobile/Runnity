@@ -63,7 +63,7 @@ class SignUpStep2Fragment : Fragment() {
                 username.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre", Toast.LENGTH_SHORT).show()
                 birthdate.isEmpty() -> Toast.makeText(activity, "Ingrese su fecha de nacimiento", Toast.LENGTH_SHORT).show()
                 weight.isEmpty() -> Toast.makeText(activity, "Ingrese su peso", Toast.LENGTH_SHORT).show()
-                else -> findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToMapFragment())
+                else -> findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
             }
         }
     }
