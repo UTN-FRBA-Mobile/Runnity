@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "516232909378",
+    "project_id": "runnity-dadm-2c2021",
+    "storage_bucket": "runnity-dadm-2c2021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516232909378:android:319d4fb0291900038153db",
+        "android_client_info": {
+          "package_name": "com.utnfrbamobile.runnity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516232909378-oc02lk0673p7kho11qkl4a70eu4apifr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGLHXwvE6SVsBfpEUu5zDSXSPebe_fp48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516232909378-oc02lk0673p7kho11qkl4a70eu4apifr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

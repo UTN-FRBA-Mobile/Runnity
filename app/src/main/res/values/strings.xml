@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Runnity</string>
-    <string name="google_api_key">AIzaSyBD92xGIpgQWgIQKhtWza6vC6eKsdqiIe8</string>
+    <string name="google_geo_api_key">AIzaSyBD92xGIpgQWgIQKhtWza6vC6eKsdqiIe8</string>
     <string name="subtitle_profile_creation">Completa tu perfil para continuar</string>
     <string name="profile">Perfil</string>
     <string name="continue_button_text">Continuar</string>
     <string name="sign_in">Ingreso</string>
-    <string name="user_name">Nombre de usuario</string>
+    <string name="email">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="log_in">Ingresar</string>
     <string name="register_here_label">¿Aún no sos parte de Runnity?</string>

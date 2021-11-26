@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
@@ -17,6 +18,7 @@ import java.util.*
 import com.google.android.material.datepicker.CompositeDateValidator
 
 import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.firebase.auth.FirebaseAuth
 import com.utnfrbamobile.runnity.R
 
 
@@ -24,6 +26,9 @@ class SignUpStep2Fragment : Fragment() {
 
     private var _binding: FragmentSignUpStep2Binding? = null
     private val binding get() = _binding!!
+
+    private lateinit var viewModel: SignUpViewModel
+
     private val datePicker = buildDatePicker()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +40,8 @@ class SignUpStep2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity()).get(SignUpViewModel::class.java)
 
         binding.name.setOnEditorActionListener { v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
@@ -55,15 +62,15 @@ class SignUpStep2Fragment : Fragment() {
         }
 
         binding.continueButton.setOnClickListener {
-            val username = binding.name.text.toString()
+            val name = binding.name.text.toString()
             val birthdate = binding.birthdate.text.toString()
             val weight = binding.weight.text.toString()
 
             when{
-                username.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre", Toast.LENGTH_SHORT).show()
+                name.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre", Toast.LENGTH_SHORT).show()
                 birthdate.isEmpty() -> Toast.makeText(activity, "Ingrese su fecha de nacimiento", Toast.LENGTH_SHORT).show()
                 weight.isEmpty() -> Toast.makeText(activity, "Ingrese su peso", Toast.LENGTH_SHORT).show()
-                else -> findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
+                else -> finishSignUp()
             }
         }
     }
@@ -95,5 +102,15 @@ class SignUpStep2Fragment : Fragment() {
 
     private fun showDatePicker(){
         datePicker.show(childFragmentManager, "BIRTHDATE_DATEPICKER")
+    }
+
+    private fun finishSignUp(){
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(viewModel.email, viewModel.password).addOnCompleteListener {
+            if (it.isSuccessful){
+                findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
+            } else {
+                Toast.makeText(activity, "Hubo un problema al intentar crear el usuario", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
