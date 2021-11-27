@@ -6,6 +6,6 @@ class SignUpViewModel : ViewModel() {
     var email : String = "";
     var password : String = "";
     var name : String = "";
-    var birthday : String = "";
+    var birthdate : String = "";
     var weight: String = ""
 }

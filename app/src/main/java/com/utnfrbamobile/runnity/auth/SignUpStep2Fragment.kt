@@ -19,6 +19,7 @@ import com.google.android.material.datepicker.CompositeDateValidator
 
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.utnfrbamobile.runnity.R
 
 
@@ -28,6 +29,8 @@ class SignUpStep2Fragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: SignUpViewModel
+
+    private val db = FirebaseFirestore.getInstance()
 
     private val datePicker = buildDatePicker()
 
@@ -70,7 +73,12 @@ class SignUpStep2Fragment : Fragment() {
                 name.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre", Toast.LENGTH_SHORT).show()
                 birthdate.isEmpty() -> Toast.makeText(activity, "Ingrese su fecha de nacimiento", Toast.LENGTH_SHORT).show()
                 weight.isEmpty() -> Toast.makeText(activity, "Ingrese su peso", Toast.LENGTH_SHORT).show()
-                else -> finishSignUp()
+                else -> {
+                    viewModel.name = name
+                    viewModel.birthdate = birthdate
+                    viewModel.weight = weight
+                    finishSignUp()
+                }
             }
         }
     }
@@ -105,9 +113,24 @@ class SignUpStep2Fragment : Fragment() {
     }
 
     private fun finishSignUp(){
+        // Envío el primer request para crear el usuario con email y password
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(viewModel.email, viewModel.password).addOnCompleteListener {
+            // Si se crea el usuario se envía un segundo request para guardar los otros datos
             if (it.isSuccessful){
-                findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
+                db.collection("users").document(viewModel.email).set(
+                    hashMapOf(
+                        "name" to viewModel.name,
+                        "birthdate" to viewModel.birthdate,
+                        "weight" to viewModel.weight
+                    )
+                ).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
+                    }
+                    else{
+                        Toast.makeText(activity, "Hubo un problema al intentar crear el usuario", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else {
                 Toast.makeText(activity, "Hubo un problema al intentar crear el usuario", Toast.LENGTH_SHORT).show()
             }
