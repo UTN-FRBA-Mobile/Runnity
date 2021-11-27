@@ -32,6 +32,7 @@ class SignUpStep2Fragment : Fragment() {
 
     private val db = FirebaseFirestore.getInstance()
 
+    private var dateSelected = MaterialDatePicker.todayInUtcMilliseconds()
     private val datePicker = buildDatePicker()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +61,9 @@ class SignUpStep2Fragment : Fragment() {
         }
 
         datePicker.addOnPositiveButtonClickListener {
+            dateSelected = datePicker.selection!!
             binding.birthdate.setText(datePicker.headerText)
+
             binding.weight.requestFocus()
         }
 
@@ -75,7 +78,7 @@ class SignUpStep2Fragment : Fragment() {
                 weight.isEmpty() -> Toast.makeText(activity, "Ingrese su peso", Toast.LENGTH_SHORT).show()
                 else -> {
                     viewModel.name = name
-                    viewModel.birthdate = birthdate
+                    viewModel.birthdate = dateSelected
                     viewModel.weight = weight
                     finishSignUp()
                 }
@@ -103,13 +106,15 @@ class SignUpStep2Fragment : Fragment() {
 
         return MaterialDatePicker.Builder.datePicker()
             .setTitleText("Fecha de nacimiento")
-            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setSelection(dateSelected)
             .setCalendarConstraints(constraintsBuilder.build())
             .build()
     }
 
     private fun showDatePicker(){
-        datePicker.show(childFragmentManager, "BIRTHDATE_DATEPICKER")
+        if(datePicker.isVisible.not()){
+            datePicker.show(childFragmentManager, "BIRTHDATE_DATEPICKER")
+        }
     }
 
     private fun finishSignUp(){

@@ -56,7 +56,7 @@ class LoginFragment : Fragment() {
                 db.collection("users").document(email).get().addOnSuccessListener {
                     viewModel.email = email
                     viewModel.name = it.get("name") as String
-                    viewModel.birthdate = it.get("birthdate") as String
+                    viewModel.birthdate = it.get("birthdate") as Long
                     viewModel.weight = it.get("weight") as String
 
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCompetitionMenuFragment())
