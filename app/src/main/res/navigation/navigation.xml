@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_loginFragment_to_competitionMenuFragment"
             app:destination="@id/competitionMenuFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpStep2Fragment"
+            app:destination="@id/signUpStep2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"

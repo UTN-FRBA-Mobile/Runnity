@@ -54,13 +54,17 @@ class LoginFragment : Fragment() {
     private fun login(email: String, password: String){
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful){
+                viewModel.email = email
                 db.collection("users").document(email).get().addOnSuccessListener {
-                    viewModel.email = email
-                    viewModel.name = it.get("name") as String
-                    viewModel.birthdate = it.get("birthdate") as Long
-                    viewModel.weight = it.get("weight") as String
+                    if(it.exists()){
+                        viewModel.name = it.get("name") as String
+                        viewModel.birthdate = it.get("birthdate") as Long
+                        viewModel.weight = it.get("weight") as String
 
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCompetitionMenuFragment())
+                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCompetitionMenuFragment())
+                    } else{
+                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToSignUpStep2Fragment())
+                    }
                 }
             } else {
                 Toast.makeText(activity, R.string.login_error_message, Toast.LENGTH_SHORT).show()

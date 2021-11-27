@@ -1,7 +1,6 @@
 package com.utnfrbamobile.runnity.auth
 
 import android.os.Bundle
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -81,7 +80,7 @@ class SignUpStep2Fragment : Fragment() {
                     viewModel.name = name
                     viewModel.birthdate = dateSelected
                     viewModel.weight = weight
-                    finishSignUp()
+                    saveProfile()
                 }
             }
         }
@@ -118,26 +117,18 @@ class SignUpStep2Fragment : Fragment() {
         }
     }
 
-    private fun finishSignUp(){
-        // Envío el primer request para crear el usuario con email y password
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(viewModel.email, viewModel.password).addOnCompleteListener {
-            // Si se crea el usuario se envía un segundo request para guardar los otros datos
+    private fun saveProfile(){
+        db.collection("users").document(viewModel.email).set(
+            hashMapOf(
+                "name" to viewModel.name,
+                "birthdate" to viewModel.birthdate,
+                "weight" to viewModel.weight
+            )
+        ).addOnCompleteListener {
             if (it.isSuccessful){
-                db.collection("users").document(viewModel.email).set(
-                    hashMapOf(
-                        "name" to viewModel.name,
-                        "birthdate" to viewModel.birthdate,
-                        "weight" to viewModel.weight
-                    )
-                ).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
-                    }
-                    else{
-                        Toast.makeText(activity, R.string.signup_error_message, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            } else {
+                findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
+            }
+            else{
                 Toast.makeText(activity, R.string.signup_error_message, Toast.LENGTH_SHORT).show()
             }
         }
