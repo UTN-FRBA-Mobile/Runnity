@@ -34,6 +34,7 @@ class SignUpStep2Fragment : Fragment() {
 
     private var dateSelected = MaterialDatePicker.todayInUtcMilliseconds()
     private val datePicker = buildDatePicker()
+    private val DATEPICKER_TAG = "BIRTHDATE_DATEPICKER"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -73,9 +74,9 @@ class SignUpStep2Fragment : Fragment() {
             val weight = binding.weight.text.toString()
 
             when{
-                name.isEmpty() -> Toast.makeText(activity, "Ingrese su nombre", Toast.LENGTH_SHORT).show()
-                birthdate.isEmpty() -> Toast.makeText(activity, "Ingrese su fecha de nacimiento", Toast.LENGTH_SHORT).show()
-                weight.isEmpty() -> Toast.makeText(activity, "Ingrese su peso", Toast.LENGTH_SHORT).show()
+                name.isEmpty() -> Toast.makeText(activity, R.string.empty_name_message, Toast.LENGTH_SHORT).show()
+                birthdate.isEmpty() -> Toast.makeText(activity, R.string.empty_birthdate_message, Toast.LENGTH_SHORT).show()
+                weight.isEmpty() -> Toast.makeText(activity, R.string.empty_weight_message, Toast.LENGTH_SHORT).show()
                 else -> {
                     viewModel.name = name
                     viewModel.birthdate = dateSelected
@@ -105,7 +106,7 @@ class SignUpStep2Fragment : Fragment() {
             .setValidator(validators)
 
         return MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Fecha de nacimiento")
+            .setTitleText(R.string.birthdate)
             .setSelection(dateSelected)
             .setCalendarConstraints(constraintsBuilder.build())
             .build()
@@ -113,7 +114,7 @@ class SignUpStep2Fragment : Fragment() {
 
     private fun showDatePicker(){
         if(datePicker.isVisible.not()){
-            datePicker.show(childFragmentManager, "BIRTHDATE_DATEPICKER")
+            datePicker.show(childFragmentManager, DATEPICKER_TAG)
         }
     }
 
@@ -133,11 +134,11 @@ class SignUpStep2Fragment : Fragment() {
                         findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
                     }
                     else{
-                        Toast.makeText(activity, "Hubo un problema al intentar crear el usuario", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, R.string.signup_error_message, Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
-                Toast.makeText(activity, "Hubo un problema al intentar crear el usuario", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, R.string.signup_error_message, Toast.LENGTH_SHORT).show()
             }
         }
     }

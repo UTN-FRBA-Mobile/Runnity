@@ -37,10 +37,11 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
+            R.string.empty_email_message
 
             when{
-                email.isEmpty() -> Toast.makeText(activity, "Ingrese su correo electrónico", Toast.LENGTH_SHORT).show()
-                password.isEmpty() -> Toast.makeText(activity, "Ingrese su contraseña", Toast.LENGTH_SHORT).show()
+                email.isEmpty() -> Toast.makeText(activity, R.string.empty_email_message, Toast.LENGTH_SHORT).show()
+                password.isEmpty() -> Toast.makeText(activity, R.string.empty_password_message, Toast.LENGTH_SHORT).show()
                 else -> login(email, password)
             }
         }
@@ -62,7 +63,7 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCompetitionMenuFragment())
                 }
             } else {
-                Toast.makeText(activity, "Hubo un problema al loguearse, revise las credenciales", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, R.string.login_error_message, Toast.LENGTH_SHORT).show()
             }
         }
     }

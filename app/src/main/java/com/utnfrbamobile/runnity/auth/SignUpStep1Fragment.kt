@@ -35,10 +35,10 @@ class SignUpStep1Fragment : Fragment() {
             val password = binding.password.text.toString()
 
             when{
-                email.isEmpty() -> Toast.makeText(activity, "Ingrese su correo electrónico", Toast.LENGTH_SHORT).show()
-                isValidEmail(email).not() -> Toast.makeText(activity, "El correo electrónico es inválido", Toast.LENGTH_SHORT).show()
-                password.isEmpty() -> Toast.makeText(activity, "Ingrese su contraseña", Toast.LENGTH_SHORT).show()
-                password.length < 8 -> Toast.makeText(activity, "La contraseña debe tener al menos 8 caracteres", Toast.LENGTH_SHORT).show()
+                email.isEmpty() -> Toast.makeText(activity, R.string.empty_email_message, Toast.LENGTH_SHORT).show()
+                isValidEmail(email).not() -> Toast.makeText(activity, R.string.invalid_email_message, Toast.LENGTH_SHORT).show()
+                password.isEmpty() -> Toast.makeText(activity, R.string.empty_password_message, Toast.LENGTH_SHORT).show()
+                password.length < 8 -> Toast.makeText(activity, R.string.invalid_password_message, Toast.LENGTH_SHORT).show()
                 else -> {
                     viewModel.email = email
                     viewModel.password = password

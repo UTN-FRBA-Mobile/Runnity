@@ -1,15 +1,7 @@
 <resources>
     <string name="app_name">Runnity</string>
     <string name="google_geo_api_key">AIzaSyBD92xGIpgQWgIQKhtWza6vC6eKsdqiIe8</string>
-    <string name="subtitle_profile_creation">Completa tu perfil para continuar</string>
     <string name="profile">Perfil</string>
-    <string name="continue_button_text">Continuar</string>
-    <string name="sign_in">Ingreso</string>
-    <string name="email">Correo electrónico</string>
-    <string name="password">Contraseña</string>
-    <string name="log_in">Ingresar</string>
-    <string name="register_here_label">¿Aún no sos parte de Runnity?</string>
-    <string name="sign_up_here">Registrate aquí</string>
     <string name="duration_label">Duración</string>
     <string name="distance_label">Distancia (Km)</string>
     <string name="rhythm_label">Ritmo medio (min/km)</string>
@@ -19,11 +11,6 @@
     <string name="distance_default">00</string>
     <string name="rhythm_default">00:00</string>
     <string name="calories_default">0</string>
-    <string name="register_label">Registro</string>
-    <string name="register_button">Registrarme</string>
-    <string name="name">Nombre</string>
-    <string name="birth_date">Fecha de nacimiento</string>
-    <string name="weight">Peso (Kg)</string>
     <string name="competencies_nav_menu">Competencias</string>
     <string name="profile_nav_menu">Perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -34,4 +21,38 @@
     <string name="pending_race_label">Carrera Pendiente</string>
     <string name="pending_race_detail">5K | Juan Pérez VS Esteban Quito</string>
     <string name="participate_button_label">PARTICIPAR</string>
+
+    <string name="timezone">UTC</string>
+    <!-- Auth -->
+    <string name="sign_in">Ingreso</string>
+    <string name="register_label">Registro</string>
+
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="name">Nombre</string>
+    <string name="birthdate">Fecha de nacimiento</string>
+    <string name="weight">Peso (Kg)</string>
+
+    <string name="log_in">Ingresar</string>
+    <string name="continue_button_text">Continuar</string>
+    <string name="register_button">Registrarme</string>
+
+    <string name="register_here_label">¿Aún no sos parte de Runnity?</string>
+    <string name="sign_up_here">Registrate aquí</string>
+    <string name="subtitle_profile_creation">Completa tu perfil para continuar</string>
+
+    <string name="users_collection">users</string>
+    <string name="name_field">name</string>
+    <string name="birthdate_field">birthdate</string>
+    <string name="weight_field">weight</string>
+
+    <string name="empty_email_message">Ingrese su correo electrónico</string>
+    <string name="invalid_email_message">El correo electrónico es inválido</string>
+    <string name="empty_password_message">Ingrese su contraseña</string>
+    <string name="invalid_password_message">La contraseña debe tener al menos 8 caracteres</string>
+    <string name="empty_name_message">Ingrese su nombre</string>
+    <string name="empty_birthdate_message">Ingrese su fecha de nacimiento</string>
+    <string name="empty_weight_message">Ingrese su peso</string>
+    <string name="login_error_message">Hubo un problema al loguearse, revise las credenciales</string>
+    <string name="signup_error_message">Hubo un problema al intentar crear el usuario</string>
 </resources>
