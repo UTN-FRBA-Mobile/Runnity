@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.utnfrbamobile.runnity.ui.MapFragment"
-        android:label="Competencias" />
+        android:label="Competencias - Carrera" />
     <fragment
         android:id="@+id/signUpStep1Fragment"
         android:name="com.utnfrbamobile.runnity.auth.SignUpStep1Fragment"
@@ -46,5 +46,18 @@
         android:id="@+id/competitionMenuFragment"
         android:name="com.utnfrbamobile.runnity.ui.CompetitionMenuFragment"
         android:label="Competencias"
-        tools:layout="@layout/fragment_competition_menu" />
+        tools:layout="@layout/fragment_competition_menu" >
+        <action
+            android:id="@+id/action_competitionMenuFragment_to_competitionDetailFragment"
+            app:destination="@id/competitionDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/competitionDetailFragment"
+        android:name="com.utnfrbamobile.runnity.ui.CompetitionDetailFragment"
+        android:label="Competencias - Carrera"
+        tools:layout="@layout/fragment_competition_detail" >
+        <action
+            android:id="@+id/action_competitionDetailFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
 </navigation>

@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="@string/participate_button_label"
-                android:textColor="#0000CC"
+                android:textColor="@color/link_color"
                 android:textSize="16sp"
                 android:paddingEnd="40dp"
                 tools:ignore="RtlSymmetry" />

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="30dp"
+    tools:context=".ui.CompetitionDetailFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_shape"
+        android:rotation="135"
+        app:layout_constraintBottom_toTopOf="@+id/competeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Orientation" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/versus_competition_box"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/competeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="VS"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="5K"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/userPicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/picture_shape"
+        android:backgroundTint="#add8e6"
+        android:padding="10dp"
+        android:src="@drawable/running"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="User Picture" />
+
+    <ImageView
+        android:id="@+id/opponentPicture"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/picture_shape"
+        android:backgroundTint="#99e599"
+        android:padding="10dp"
+        android:src="@drawable/running"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:contentDescription="Opponent Picture" />
+
+    <Button
+        android:id="@+id/competeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="COMPETIR"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/seeResultsLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/seeResultsLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VER RESULTADOS"
+        android:textColor="@color/link_color"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/opponentNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usain Bolt"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/opponentPicture"
+        app:layout_constraintStart_toStartOf="@+id/opponentPicture"
+        app:layout_constraintTop_toBottomOf="@+id/opponentPicture" />
+
+    <TextView
+        android:id="@+id/userNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Franco Curi"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/userPicture"
+        app:layout_constraintEnd_toEndOf="@+id/userPicture"
+        app:layout_constraintStart_toStartOf="@+id/userPicture" />
+
+    <TextView
+        android:id="@+id/userRaceStateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Pendiente"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:background="@drawable/race_state_label"
+        android:backgroundTint="#888888"
+        app:layout_constraintEnd_toEndOf="@+id/userPicture"
+        app:layout_constraintStart_toStartOf="@+id/userPicture"
+        app:layout_constraintTop_toBottomOf="@+id/userPicture" />
+
+    <TextView
+        android:id="@+id/opponentRaceStateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        android:text="Completo"
+        android:fontFamily="@font/poppins_bold"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:background="@drawable/race_state_label"
+        android:backgroundTint="#3169F7"
+        app:layout_constraintBottom_toTopOf="@+id/opponentPicture"
+        app:layout_constraintEnd_toEndOf="@+id/opponentPicture"
+        app:layout_constraintStart_toStartOf="@+id/opponentPicture" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
