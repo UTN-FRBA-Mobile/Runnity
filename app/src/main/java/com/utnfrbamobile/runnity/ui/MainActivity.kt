@@ -1,15 +1,14 @@
 package com.utnfrbamobile.runnity.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.utnfrbamobile.runnity.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.navigation.findNavController
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.utnfrbamobile.runnity.R
+import com.utnfrbamobile.runnity.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,5 +26,15 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
