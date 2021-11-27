@@ -36,6 +36,7 @@
     <string name="log_in">Ingresar</string>
     <string name="continue_button_text">Continuar</string>
     <string name="register_button">Registrarme</string>
+    <string name="save_profile_button">Guardar datos</string>
 
     <string name="register_here_label">¿Aún no sos parte de Runnity?</string>
     <string name="sign_up_here">Registrate aquí</string>
@@ -55,4 +56,5 @@
     <string name="empty_weight_message">Ingrese su peso</string>
     <string name="login_error_message">Hubo un problema al loguearse, revise las credenciales</string>
     <string name="signup_error_message">Hubo un problema al intentar crear el usuario</string>
+    <string name="profile_updated_ok_message">Su perfil fue actualizado correctamente</string>
 </resources>

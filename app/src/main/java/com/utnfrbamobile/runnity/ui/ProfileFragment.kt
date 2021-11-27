@@ -5,56 +5,136 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.datepicker.*
+import com.google.firebase.firestore.FirebaseFirestore
 import com.utnfrbamobile.runnity.R
+import com.utnfrbamobile.runnity.auth.SignUpViewModel
+import com.utnfrbamobile.runnity.databinding.FragmentProfileBinding
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var viewModel: SignUpViewModel
+
+    private val db = FirebaseFirestore.getInstance()
+
+    private var dateSelected = MaterialDatePicker.todayInUtcMilliseconds()
+    //private val datePicker = buildDatePicker()
+    //private var dateSelected = null
+    private lateinit var datePicker: MaterialDatePicker<Long>
+    private val DATEPICKER_TAG = "BIRTHDATE_DATEPICKER"
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.GONE
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity()).get(SignUpViewModel::class.java)
+
+        dateSelected = viewModel.birthdate
+        datePicker = buildDatePicker()
+
+        binding.name.setText(viewModel.name)
+        binding.birthdate.setText(viewModel.birthdate.toString())
+        binding.weight.setText(viewModel.weight)
+
+        binding.name.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                binding.name.clearFocus()
+                showDatePicker()
+                true
+            }
+            false
+        }
+
+        binding.birthdate.setOnClickListener {
+            showDatePicker()
+        }
+
+        datePicker.addOnPositiveButtonClickListener {
+            dateSelected = datePicker.selection!!
+            binding.birthdate.setText(datePicker.headerText)
+
+            binding.weight.requestFocus()
+        }
+
+        binding.continueButton.setOnClickListener {
+            val name = binding.name.text.toString()
+            val birthdate = binding.birthdate.text.toString()
+            val weight = binding.weight.text.toString()
+
+            when{
+                name.isEmpty() -> Toast.makeText(activity, R.string.empty_name_message, Toast.LENGTH_SHORT).show()
+                birthdate.isEmpty() -> Toast.makeText(activity, R.string.empty_birthdate_message, Toast.LENGTH_SHORT).show()
+                weight.isEmpty() -> Toast.makeText(activity, R.string.empty_weight_message, Toast.LENGTH_SHORT).show()
+                else -> {
+                    viewModel.name = name
+                    viewModel.birthdate = dateSelected
+                    viewModel.weight = weight
+                    updateProfile()
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    private fun buildDatePicker(): MaterialDatePicker<Long> {
+        val today = MaterialDatePicker.todayInUtcMilliseconds()
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+
+        calendar.timeInMillis = today
+        calendar[Calendar.YEAR] = calendar[Calendar.YEAR] - 120
+        val a120YearsAgo = calendar.timeInMillis
+
+        val validators = CompositeDateValidator.allOf(listOf(
+            DateValidatorPointForward.from(a120YearsAgo),
+            DateValidatorPointBackward.now()
+        ))
+
+        val constraintsBuilder = CalendarConstraints.Builder()
+            .setStart(a120YearsAgo)
+            .setEnd(today)
+            .setValidator(validators)
+
+        return MaterialDatePicker.Builder.datePicker()
+            .setTitleText(R.string.birthdate)
+            .setSelection(dateSelected)
+            .setCalendarConstraints(constraintsBuilder.build())
+            .build()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun showDatePicker(){
+        if(datePicker.isVisible.not()){
+            datePicker.show(childFragmentManager, DATEPICKER_TAG)
+        }
+    }
+
+    private fun updateProfile(){
+        db.collection("users").document(viewModel.email).set(
+            hashMapOf(
+                "name" to viewModel.name,
+                "birthdate" to viewModel.birthdate,
+                "weight" to viewModel.weight
+            )
+        ).addOnCompleteListener {
+            Toast.makeText(activity, R.string.profile_updated_ok_message, Toast.LENGTH_SHORT).show()
+
+            Toast.makeText(
+                activity,
+                if (it.isSuccessful) R.string.profile_updated_ok_message else R.string.signup_error_message,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }
