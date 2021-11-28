@@ -44,7 +44,7 @@ class CompetitionDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val participateButton: Button = view.findViewById(R.id.competeButton)
         participateButton.setOnClickListener{
-            it.findNavController().navigate(R.id.action_competitionDetailFragment_to_mapFragment)
+            it.findNavController().navigate(R.id.action_competitionDetailFragment_to_permissionFragment)
         }
     }
 
