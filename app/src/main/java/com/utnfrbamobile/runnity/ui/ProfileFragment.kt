@@ -26,8 +26,6 @@ class ProfileFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
 
     private var dateSelected = MaterialDatePicker.todayInUtcMilliseconds()
-    //private val datePicker = buildDatePicker()
-    //private var dateSelected = null
     private lateinit var datePicker: MaterialDatePicker<Long>
     private val DATEPICKER_TAG = "BIRTHDATE_DATEPICKER"
 
