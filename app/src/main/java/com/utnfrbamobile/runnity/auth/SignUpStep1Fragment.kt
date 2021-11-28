@@ -21,7 +21,6 @@ class SignUpStep1Fragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        requireActivity().findViewById<View>(R.id.nav_view).visibility = View.GONE
         _binding = FragmentSignUpStep1Binding.inflate(inflater, container, false)
         return binding.root
     }
