@@ -125,7 +125,6 @@ class ProfileFragment : Fragment() {
                 "weight" to viewModel.weight
             )
         ).addOnCompleteListener {
-            Toast.makeText(activity, R.string.profile_updated_ok_message, Toast.LENGTH_SHORT).show()
 
             Toast.makeText(
                 activity,
