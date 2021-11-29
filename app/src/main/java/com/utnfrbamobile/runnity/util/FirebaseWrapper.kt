@@ -93,19 +93,21 @@ class FirebaseWrapper {
                 .get()
         }
 
-        fun createRace(myEmail: String, adversaryEmail: String, category: Int){
+        fun createRace(myEmail: String, myName: String, adversaryEmail: String, adversaryName: String, category: Int){
             db.collection("races").add(
                 hashMapOf(
                     "category" to category,
                     "user1" to hashMapOf(
                         "email" to myEmail,
+                        "name" to myName,
                         "duration" to 0,
-                        "distance" to 0
+                        "distance" to "0"
                     ),
                     "user2" to hashMapOf(
                         "email" to adversaryEmail,
+                        "name" to adversaryName,
                         "duration" to 0,
-                        "distance" to 0
+                        "distance" to "0"
                     )
                 )
             ).addOnCompleteListener {
@@ -116,6 +118,21 @@ class FirebaseWrapper {
                     Toast.makeText(currentActivity, R.string.race_creation_error_message, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        private fun findRace(fieldPath: String, email: String): Task<QuerySnapshot> {
+            return db
+                .collection("races")
+                .whereEqualTo(fieldPath, email)
+                .get()
+        }
+
+        fun findRacesCreatedByMe(email: String): Task<QuerySnapshot> {
+            return findRace("user1.email", email)
+        }
+
+        fun findRacesCreatedByAdversary(email: String): Task<QuerySnapshot> {
+            return findRace("user2.email", email)
         }
     }
 }

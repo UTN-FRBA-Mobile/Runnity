@@ -9,8 +9,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.utnfrbamobile.runnity.R
 
-class PendingRaceAdapter: RecyclerView.Adapter<PendingRaceAdapter.ViewHolder>() {
-    var data = listOf<PendingRace>()
+class RaceAdapter: RecyclerView.Adapter<RaceAdapter.ViewHolder>() {
+    var data = listOf<Race>()
         set (value) {
             field = value
             notifyDataSetChanged()
@@ -18,29 +18,29 @@ class PendingRaceAdapter: RecyclerView.Adapter<PendingRaceAdapter.ViewHolder>() 
 
     override fun getItemCount() = data.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        holder.detail.text = item.category + " | " + userName + " VS " + item.opponent
-        holder.participateButton.setOnClickListener {
-            // (Pendiente)
-            /*val intent: Intent = Intent()
-            intent.putExtra("raceId", data[position].raceId)
-            intent.putExtra("opponent", data[position].opponent)
-            intent.putExtra("category", data[position].category)*/
-
-            it.findNavController().navigate(R.id.action_competitionMenuFragment_to_competitionDetailFragment)
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.pending_race_view, parent, false)
         return ViewHolder(view)
     }
 
-    var userName = "Juan Perez"
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val race = data[position]
+        holder.detail.text = race.category.toString() + "K | " + race.user1.name + " VS " + race.user2.name
+
+        holder.title.text =
+            if(race.user1.duration == 0L || race.user2.duration == 0L)
+                "Carrera pendiente"
+            else
+                "Carrera finalizada"
+
+        holder.participateButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_competitionMenuFragment_to_competitionDetailFragment)
+        }
+    }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val title: TextView = itemView.findViewById(R.id.pending_race_label)
         val detail: TextView = itemView.findViewById(R.id.pendingRaceDetail)
         val participateButton: LinearLayout = itemView.findViewById(R.id.participateButton)
     }

@@ -19,21 +19,7 @@ class AdversaryAdapter(private val users: List<User>, private val listener: OnAd
         val adversary = users[position]
         holder.itemView.findViewById<TextView>(R.id.adversary_name_label).text = adversary.name
         holder.itemView.setOnClickListener {
-            listener.onAdversarySelected(adversary.email)
-        }
-    }
-
-    class ObjectViewHolder(view: View) : RecyclerView.ViewHolder(view),
-        View.OnClickListener {
-        private val item: User? = null
-        override fun onClick(v: View) {
-            var i = 0
-            item
-            i++
-        }
-
-        init {
-            view.setOnClickListener(this)
+            listener.onAdversarySelected(adversary.email, adversary.name)
         }
     }
 

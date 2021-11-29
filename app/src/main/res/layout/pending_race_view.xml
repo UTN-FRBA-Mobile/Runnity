@@ -23,7 +23,7 @@
         android:minWidth="280dp"
         android:minHeight="142dp">
         <TextView
-            android:id="@+id/pendingRaceLabel"
+            android:id="@+id/pending_race_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
-                android:text="@string/participate_button_label"
+                android:text="@string/ver_button_label"
                 android:textColor="@color/link_color"
                 android:textSize="16sp"
                 android:paddingEnd="40dp"

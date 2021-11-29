@@ -27,6 +27,7 @@ class NewCompetitionFragment : Fragment(), OnAdversarySelectedListener {
     private lateinit var viewModel: SignUpViewModel
 
     private lateinit var emailSelected: String
+    private lateinit var nameSelected: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         _binding = FragmentNewCompetitionBinding.inflate(inflater, container, false)
@@ -61,12 +62,13 @@ class NewCompetitionFragment : Fragment(), OnAdversarySelectedListener {
         binding.createCompetitionButton.setOnClickListener(){
             when{
                 emailSelected.isNullOrBlank() -> Toast.makeText(activity, R.string.adversary_unselected_message, Toast.LENGTH_SHORT).show()
-                else -> FirebaseWrapper.createRace(viewModel.email, emailSelected, 2)
+                else -> FirebaseWrapper.createRace(viewModel.email, viewModel.name, emailSelected, nameSelected, 2)
             }
         }
     }
 
-    override fun onAdversarySelected(email: String) {
+    override fun onAdversarySelected(email: String, name: String) {
         emailSelected = email
+        nameSelected = name
     }
 }
