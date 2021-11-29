@@ -13,7 +13,6 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.utnfrbamobile.runnity.R
@@ -21,7 +20,6 @@ import com.utnfrbamobile.runnity.data.LocationEntity
 import com.utnfrbamobile.runnity.data.RunnityDao
 import com.utnfrbamobile.runnity.data.RunnityDaoSingleton
 import com.utnfrbamobile.runnity.domain.FetchLocationUseCase
-import com.utnfrbamobile.runnity.util.onBackPressedCustomAction
 import com.utnfrbamobile.runnity.work.RunnityWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -61,9 +59,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val startButton: Button = view.findViewById(R.id.startButton)
         startButton.setOnClickListener {
             RunnityWorker.enqueue(requireContext())
-        }
-        onBackPressedCustomAction {
-            findNavController().navigate(R.id.action_mapFragment_to_competitionDetailFragment)
         }
         runnutyDao.getAllLiveData().observe(viewLifecycleOwner, listenLocationUpdates)
     }
