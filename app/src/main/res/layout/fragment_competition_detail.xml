@@ -51,7 +51,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/userPicture"
+        android:id="@+id/firstPlacePicture"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/picture_shape"
@@ -117,9 +117,9 @@
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/black"
         android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/userPicture"
-        app:layout_constraintEnd_toEndOf="@+id/userPicture"
-        app:layout_constraintStart_toStartOf="@+id/userPicture" />
+        app:layout_constraintBottom_toTopOf="@+id/firstPlacePicture"
+        app:layout_constraintEnd_toEndOf="@+id/firstPlacePicture"
+        app:layout_constraintStart_toStartOf="@+id/firstPlacePicture" />
 
     <TextView
         android:id="@+id/userRaceStateLabel"
@@ -134,9 +134,9 @@
         android:textColor="@color/white"
         android:background="@drawable/race_state_label"
         android:backgroundTint="#888888"
-        app:layout_constraintEnd_toEndOf="@+id/userPicture"
-        app:layout_constraintStart_toStartOf="@+id/userPicture"
-        app:layout_constraintTop_toBottomOf="@+id/userPicture" />
+        app:layout_constraintEnd_toEndOf="@+id/firstPlacePicture"
+        app:layout_constraintStart_toStartOf="@+id/firstPlacePicture"
+        app:layout_constraintTop_toBottomOf="@+id/firstPlacePicture" />
 
     <TextView
         android:id="@+id/opponentRaceStateLabel"

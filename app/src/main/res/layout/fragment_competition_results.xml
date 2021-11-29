@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.CompetitionDetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleFirstPlace"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="#FFD232"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/contentFirstPlace"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/nameFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Usain Bolt"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/firstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="1°"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentFirstPlace"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/titleSecondPlace"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:id="@+id/firstPlacePicture"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@drawable/picture_shape"
+            android:backgroundTint="#add8e6"
+            android:layout_marginStart="20dp"
+            android:contentDescription="User Picture"
+            android:padding="10dp"
+            android:src="@drawable/running"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/distanceFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="10km"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/firstPlacePicture"
+            app:layout_constraintTop_toTopOf="@+id/firstPlacePicture" />
+
+        <TextView
+            android:id="@+id/durationLabelFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/duration_label"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/calorieLabelFirstPlace"
+            app:layout_constraintStart_toStartOf="@+id/calorieLabelFirstPlace" />
+
+        <TextView
+            android:id="@+id/calorieLabelFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/kilocalories_label"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/rhythmLabelFirstPlace"
+            app:layout_constraintStart_toStartOf="@+id/rhythmLabelFirstPlace" />
+
+        <TextView
+            android:id="@+id/rhythmLabelFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="Ritmo medio"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/firstPlacePicture"
+            app:layout_constraintStart_toEndOf="@+id/firstPlacePicture" />
+
+        <TextView
+            android:id="@+id/durationFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:layout_marginEnd="20dp"
+            android:text="00:00"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/durationLabelFirstPlace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/distanceFirstPlace"
+            app:layout_constraintTop_toTopOf="@+id/durationLabelFirstPlace" />
+
+        <TextView
+            android:id="@+id/calorieFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="000"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/calorieLabelFirstPlace"
+            app:layout_constraintEnd_toEndOf="@+id/durationFirstPlace"
+            app:layout_constraintStart_toStartOf="@+id/durationFirstPlace"
+            app:layout_constraintTop_toTopOf="@+id/calorieLabelFirstPlace" />
+
+        <TextView
+            android:id="@+id/rhythmFirstPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="00:00"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rhythmLabelFirstPlace"
+            app:layout_constraintEnd_toEndOf="@+id/calorieFirstPlace"
+            app:layout_constraintStart_toStartOf="@+id/calorieFirstPlace"
+            app:layout_constraintTop_toTopOf="@+id/rhythmLabelFirstPlace" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleSecondPlace"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#DCDCDC"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/contentSecondPlace"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <TextView
+            android:id="@+id/nameSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Esteban Quito"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/secondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="2°"
+            android:layout_marginEnd="15dp"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentSecondPlace"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/titleSecondPlace"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <ImageView
+            android:id="@+id/secondPlacePicture"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="@drawable/picture_shape"
+            android:backgroundTint="#99e599"
+            android:layout_marginStart="20dp"
+            android:contentDescription="User Picture"
+            android:padding="10dp"
+            android:src="@drawable/running"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/distanceSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="10km"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/secondPlacePicture"
+            app:layout_constraintTop_toTopOf="@+id/secondPlacePicture" />
+
+        <TextView
+            android:id="@+id/durationLabelSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/duration_label"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/calorieLabelSecondPlace"
+            app:layout_constraintStart_toStartOf="@+id/calorieLabelSecondPlace" />
+
+        <TextView
+            android:id="@+id/calorieLabelSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/kilocalories_label"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/rhythmLabelSecondPlace"
+            app:layout_constraintStart_toStartOf="@+id/rhythmLabelSecondPlace" />
+
+        <TextView
+            android:id="@+id/rhythmLabelSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="Ritmo medio"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/secondPlacePicture"
+            app:layout_constraintStart_toEndOf="@+id/secondPlacePicture" />
+
+        <TextView
+            android:id="@+id/durationSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="00:00"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/durationLabelSecondPlace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/distanceSecondPlace"
+            app:layout_constraintTop_toTopOf="@+id/durationLabelSecondPlace" />
+
+        <TextView
+            android:id="@+id/calorieSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="000"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/calorieLabelSecondPlace"
+            app:layout_constraintEnd_toEndOf="@+id/durationSecondPlace"
+            app:layout_constraintStart_toStartOf="@+id/durationSecondPlace"
+            app:layout_constraintTop_toTopOf="@+id/calorieLabelSecondPlace" />
+
+        <TextView
+            android:id="@+id/rhythmSecondPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="00:00"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rhythmLabelSecondPlace"
+            app:layout_constraintEnd_toEndOf="@+id/calorieSecondPlace"
+            app:layout_constraintStart_toStartOf="@+id/calorieSecondPlace"
+            app:layout_constraintTop_toTopOf="@+id/rhythmLabelSecondPlace" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
