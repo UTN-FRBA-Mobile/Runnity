@@ -22,7 +22,7 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.utnfrbamobile.runnity.ui.MapFragment"
-        android:label="Competencias - Carrera" >
+        android:label="Competencias - Mapa" >
         <action
             android:id="@+id/action_mapFragment_to_competitionDetailFragment"
             app:destination="@id/competitionDetailFragment" />
@@ -73,7 +73,7 @@
     <fragment
         android:id="@+id/permissionFragment"
         android:name="com.utnfrbamobile.runnity.ui.PermissionFragment"
-        android:label="fragment_permission"
+        android:label="Competencias - Carrera"
         tools:layout="@layout/fragment_permission" >
         <action
             android:id="@+id/action_permissionFragment_to_mapFragment"

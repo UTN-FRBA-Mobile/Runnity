@@ -63,7 +63,11 @@
     <string name="signup_error_message">Hubo un problema al intentar crear el usuario</string>
     <string name="profile_update_ok_message">Su perfil se guardó correctamente</string>
     <string name="profile_update_error_message">Ocurrio un problema al intentar guardar su perfil</string>
+    
     <string name="adversary_unselected_message">Seleccione a su contrincante</string>
     <string name="race_creation_ok_message">La competencia fue creada exitosamente</string>
     <string name="race_creation_error_message">Hubo un problema al intentar crear la competencia. Intente nuevamente.</string>
+
+    <string name="permission_message">Es necesario que permitas el acceso de Almacenamiento y de Ubicación para poder visualizar el mapa y/o comenzar a correr.</string>
+    <string name="end_button">TERMINAR</string>
 </resources>

@@ -24,6 +24,7 @@ import com.utnfrbamobile.runnity.R
 class PermissionFragment : Fragment() {
 
     private lateinit var gpsAlert: AlertDialog
+    var firstTime : Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +63,12 @@ class PermissionFragment : Fragment() {
         if (ActivityCompat.checkSelfPermission(it, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestBackgroundLocationPermission()
         } else {
-            findNavController().navigate(R.id.action_permissionFragment_to_mapFragment)
+            if (firstTime) {
+                firstTime = !firstTime
+                findNavController().navigate(R.id.action_permissionFragment_to_mapFragment)
+            } else {
+                findNavController().popBackStack()
+            }
         }
     }
 
@@ -106,7 +112,7 @@ class PermissionFragment : Fragment() {
             }
             REQUEST_BACKGROUND_CODE -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(requireContext(), "permission denied", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Permiso denegado.", Toast.LENGTH_LONG).show()
                 }
                 return
             }
@@ -125,10 +131,10 @@ class PermissionFragment : Fragment() {
 
     private fun createGpsAlert(): AlertDialog {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+        builder.setMessage("El GPS de tu dispositivo está desactivado. Es necesario que lo enciendas para poder continuar.")
             .setCancelable(false)
             .setPositiveButton(
-                "Yes"
+                "Activar"
             ) { dialog, id -> startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)) }
             .setNegativeButton(
                 "No"
