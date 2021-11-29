@@ -58,4 +58,5 @@
     <string name="signup_error_message">Hubo un problema al intentar crear el usuario</string>
     <string name="profile_updated_ok_message">Su perfil fue actualizado correctamente</string>
     <string name="permission_message">Es necesario que permitas el acceso de Almacenamiento y de Ubicación para poder visualizar el mapa y/o comenzar a correr.</string>
+    <string name="end_button">TERMINAR</string>
 </resources>

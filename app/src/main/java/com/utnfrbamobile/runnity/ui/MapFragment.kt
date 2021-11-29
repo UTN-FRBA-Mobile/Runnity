@@ -2,19 +2,23 @@ package com.utnfrbamobile.runnity.ui
 
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.location.Location
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Chronometer
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.work.WorkManager
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.utnfrbamobile.runnity.R
@@ -26,7 +30,6 @@ import com.utnfrbamobile.runnity.work.RunnityWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.w3c.dom.Text
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
@@ -42,6 +45,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     private var distance: Float = 0F
     private lateinit var distanceTextView: TextView
+
+    private var raceStarted: Boolean = false
+
+    private lateinit var durationChronometer: Chronometer
 
     private val listenLocationUpdates = Observer { newLocations: List<LocationEntity> ->
         drawPrimaryLinePath(newLocations)
@@ -65,9 +72,27 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment: SupportMapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        val startButton: Button = view.findViewById(R.id.startButton)
-        startButton.setOnClickListener {
-            RunnityWorker.enqueue(requireContext())
+        val mapButton: Button = view.findViewById(R.id.mapButton)
+
+        durationChronometer = view.findViewById(R.id.durationChronometer)
+
+        mapButton.setOnClickListener {
+            if (!raceStarted) {
+                RunnityWorker.enqueue(requireContext())
+                mapButton.setBackgroundColor(Color.MAGENTA)
+                mapButton.text = getString(R.string.end_button)
+
+                durationChronometer.base = SystemClock.elapsedRealtime()
+                durationChronometer.start()
+            } else {
+                //WorkManager.getInstance(requireContext()).createCancelPendingIntent(id)
+                mapButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.button_color))
+                mapButton.text = getString(R.string.start_button)
+
+                durationChronometer.stop()
+                var raceDuration = SystemClock.elapsedRealtime() - durationChronometer.base
+            }
+            raceStarted = !raceStarted
         }
         runnityDao.getAllLiveData().observe(viewLifecycleOwner, listenLocationUpdates)
 

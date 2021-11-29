@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/durationTextView"
+        app:layout_constraintBottom_toTopOf="@id/durationChronometer"
         />
 
     <View
@@ -27,8 +27,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mapView" />
 
-    <TextView
-        android:id="@+id/durationTextView"
+
+    <Chronometer
+        android:id="@+id/durationChronometer"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginTop="30dp"
@@ -51,7 +52,7 @@
         app:layout_constraintBottom_toTopOf="@id/distanceTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/durationTextView"
+        app:layout_constraintTop_toBottomOf="@id/durationChronometer"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -99,7 +100,7 @@
         android:fontFamily="@font/poppins"
         android:text="@string/rhythm_label"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@id/startButton"
+        app:layout_constraintBottom_toTopOf="@id/mapButton"
         app:layout_constraintEnd_toEndOf="@id/rhythmTextView"
         app:layout_constraintStart_toStartOf="@id/rhythmTextView"
         app:layout_constraintTop_toBottomOf="@id/rhythmTextView"
@@ -128,7 +129,7 @@
         app:layout_constraintStart_toStartOf="@id/calorieTextView" />
 
     <Button
-        android:id="@+id/startButton"
+        android:id="@+id/mapButton"
         style="@style/ActionButton"
         android:layout_marginHorizontal="@dimen/layout_padding_horizontal"
         android:text="@string/start_button"
