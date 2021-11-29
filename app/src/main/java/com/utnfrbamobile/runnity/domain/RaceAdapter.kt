@@ -5,9 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.utnfrbamobile.runnity.R
+import com.utnfrbamobile.runnity.auth.SignUpViewModel
 
 class RaceAdapter: RecyclerView.Adapter<RaceAdapter.ViewHolder>() {
     var data = listOf<Race>()
@@ -35,7 +38,20 @@ class RaceAdapter: RecyclerView.Adapter<RaceAdapter.ViewHolder>() {
                 "Carrera finalizada"
 
         holder.participateButton.setOnClickListener {
-            it.findNavController().navigate(R.id.action_competitionMenuFragment_to_competitionDetailFragment)
+            val bundle = bundleOf(
+                "id" to race.id,
+                "category" to race.category,
+                "user1Email" to race.user1.email,
+                "user1Name" to race.user1.name,
+                "user1Duration" to race.user1.duration,
+                "user1Distance" to race.user1.distance,
+                "user2Email" to race.user2.email,
+                "user2Name" to race.user2.name,
+                "user2Duration" to race.user2.duration,
+                "user2Distance" to race.user2.distance
+            )
+
+            it.findNavController().navigate(R.id.action_competitionMenuFragment_to_competitionDetailFragment, bundle)
         }
     }
 
