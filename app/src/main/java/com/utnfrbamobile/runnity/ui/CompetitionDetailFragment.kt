@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.navigation.findNavController
 import com.utnfrbamobile.runnity.R
+import org.w3c.dom.Text
 
 class CompetitionDetailFragment : Fragment() {
 
@@ -22,8 +24,12 @@ class CompetitionDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val participateButton: Button = view.findViewById(R.id.competeButton)
+        val seeResultsLink: TextView = view.findViewById(R.id.seeResultsLink)
         participateButton.setOnClickListener{
             it.findNavController().navigate(R.id.action_competitionDetailFragment_to_permissionFragment)
+        }
+        seeResultsLink.setOnClickListener{
+            it.findNavController().navigate(R.id.action_competitionDetailFragment_to_competitionResultsFragment)
         }
     }
 }
