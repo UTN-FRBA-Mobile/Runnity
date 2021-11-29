@@ -75,12 +75,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/distanceTextView"
-        app:layout_constraintBottom_toTopOf="@id/rhythmTextView"
+        app:layout_constraintBottom_toTopOf="@id/rhythmChronometer"
         android:text="@string/distance_label"
         android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/rhythmTextView"
+    <Chronometer
+        android:id="@+id/rhythmChronometer"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
@@ -89,7 +89,7 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/rhythmLabelTextView"
-        app:layout_constraintEnd_toStartOf="@id/calorieTextView"
+        app:layout_constraintEnd_toStartOf="@id/kilocalorieTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/distanceLabelTextView" />
 
@@ -101,32 +101,32 @@
         android:text="@string/rhythm_label"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/mapButton"
-        app:layout_constraintEnd_toEndOf="@id/rhythmTextView"
-        app:layout_constraintStart_toStartOf="@id/rhythmTextView"
-        app:layout_constraintTop_toBottomOf="@id/rhythmTextView"
+        app:layout_constraintEnd_toEndOf="@id/rhythmChronometer"
+        app:layout_constraintStart_toStartOf="@id/rhythmChronometer"
+        app:layout_constraintTop_toBottomOf="@id/rhythmChronometer"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/calorieTextView"
+        android:id="@+id/kilocalorieTextView"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/calories_default"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/rhythmTextView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rhythmChronometer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/rhythmTextView" />
+        app:layout_constraintStart_toEndOf="@id/rhythmChronometer" />
 
     <TextView
-        android:id="@+id/calorieLabelLabelTextView"
+        android:id="@+id/kilocalorieLabelLabelTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/calories_label"
+        android:text="@string/kilocalories_label"
         android:textColor="@color/black"
         app:layout_constraintBaseline_toBaselineOf="@+id/rhythmLabelTextView"
-        app:layout_constraintEnd_toEndOf="@id/calorieTextView"
-        app:layout_constraintStart_toStartOf="@id/calorieTextView" />
+        app:layout_constraintEnd_toEndOf="@id/kilocalorieTextView"
+        app:layout_constraintStart_toStartOf="@id/kilocalorieTextView" />
 
     <Button
         android:id="@+id/mapButton"
@@ -136,7 +136,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/whiteBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calorieLabelLabelTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/kilocalorieLabelLabelTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
