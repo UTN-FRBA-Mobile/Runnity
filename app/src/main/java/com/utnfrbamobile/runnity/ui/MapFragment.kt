@@ -49,7 +49,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     private var raceStarted: Boolean = false
 
+    private var raceDuration: Long = 0
     private lateinit var durationChronometer: Chronometer
+
+    private var kilocalorie: Float = 0F
+    private lateinit var kilocalorieTextView: TextView
+
+    private lateinit var rhythmChronometer: Chronometer
+
+    private var userWeight:Int = 60 //sacar de la DB
 
     private lateinit var workerId:UUID
 
@@ -79,6 +87,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         durationChronometer = view.findViewById(R.id.durationChronometer)
 
+        kilocalorieTextView = view.findViewById(R.id.kilocalorieTextView)
+
+        rhythmChronometer = view.findViewById(R.id.rhythmChronometer)
+
         mapButton.setOnClickListener {
             if (!raceStarted) {
                 workerId = RunnityWorker.enqueue(requireContext())
@@ -93,7 +105,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 mapButton.text = getString(R.string.start_button)
 
                 durationChronometer.stop()
-                var raceDuration = SystemClock.elapsedRealtime() - durationChronometer.base
+                raceDuration = SystemClock.elapsedRealtime() - durationChronometer.base
             }
             raceStarted = !raceStarted
         }
@@ -177,6 +189,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         previousLongitude = currentLongitude
 
         distanceTextView.text = String.format("%.02f", distance * M_TO_KM)
+
+        raceDuration = SystemClock.elapsedRealtime() - durationChronometer.base
+        rhythmChronometer.base = SystemClock.elapsedRealtime() - (raceDuration/ (distance * M_TO_KM)).toLong()
+
+        kilocalorie = (distance * M_TO_KM * userWeight).toFloat()
+        kilocalorieTextView.text = String.format("%.02f", kilocalorie)
     }
 
     companion object {
