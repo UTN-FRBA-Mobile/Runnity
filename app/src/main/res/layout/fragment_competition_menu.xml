@@ -40,7 +40,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="@string/pending_label"
+        android:text="@string/races_label"
         android:textColor="@color/black"
         android:textSize="24sp" />
 

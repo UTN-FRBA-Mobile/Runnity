@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_competitionMenuFragment_to_competitionDetailFragment"
             app:destination="@id/competitionDetailFragment" />
+        <action
+            android:id="@+id/action_competitionMenuFragment_to_newCompetitionFragment"
+            app:destination="@id/newCompetitionFragment" />
     </fragment>
     <fragment
         android:id="@+id/competitionDetailFragment"
@@ -76,4 +79,8 @@
             android:id="@+id/action_permissionFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/newCompetitionFragment"
+        android:name="com.utnfrbamobile.runnity.ui.NewCompetitionFragment"
+        android:label="Crear competencia" />
 </navigation>

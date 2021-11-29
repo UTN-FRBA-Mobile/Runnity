@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.*
-import com.google.firebase.firestore.FirebaseFirestore
 import com.utnfrbamobile.runnity.R
 import com.utnfrbamobile.runnity.auth.SignUpViewModel
 import com.utnfrbamobile.runnity.databinding.FragmentProfileBinding
-import java.util.*
+import com.utnfrbamobile.runnity.util.DatePickerUtil
+import com.utnfrbamobile.runnity.util.FirebaseWrapper
 
 class ProfileFragment : Fragment() {
 
@@ -22,8 +21,6 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: SignUpViewModel
-
-    private val db = FirebaseFirestore.getInstance()
 
     private var dateSelected = MaterialDatePicker.todayInUtcMilliseconds()
     private lateinit var datePicker: MaterialDatePicker<Long>
@@ -38,10 +35,12 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        FirebaseWrapper.setCurrentActivity(requireActivity())
+
         viewModel = ViewModelProvider(requireActivity()).get(SignUpViewModel::class.java)
 
         dateSelected = viewModel.birthdate
-        datePicker = buildDatePicker()
+        datePicker = DatePickerUtil.buildDatePicker(dateSelected)
 
         binding.name.setText(viewModel.name)
         binding.birthdate.setText(viewModel.birthdate.toString())
@@ -80,57 +79,15 @@ class ProfileFragment : Fragment() {
                     viewModel.name = name
                     viewModel.birthdate = dateSelected
                     viewModel.weight = weight
-                    updateProfile()
+                    FirebaseWrapper.saveProfile(viewModel.email, name, dateSelected, weight)
                 }
             }
         }
     }
 
-    private fun buildDatePicker(): MaterialDatePicker<Long> {
-        val today = MaterialDatePicker.todayInUtcMilliseconds()
-        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-
-        calendar.timeInMillis = today
-        calendar[Calendar.YEAR] = calendar[Calendar.YEAR] - 120
-        val a120YearsAgo = calendar.timeInMillis
-
-        val validators = CompositeDateValidator.allOf(listOf(
-            DateValidatorPointForward.from(a120YearsAgo),
-            DateValidatorPointBackward.now()
-        ))
-
-        val constraintsBuilder = CalendarConstraints.Builder()
-            .setStart(a120YearsAgo)
-            .setEnd(today)
-            .setValidator(validators)
-
-        return MaterialDatePicker.Builder.datePicker()
-            .setTitleText(R.string.birthdate)
-            .setSelection(dateSelected)
-            .setCalendarConstraints(constraintsBuilder.build())
-            .build()
-    }
-
     private fun showDatePicker(){
         if(datePicker.isVisible.not()){
             datePicker.show(childFragmentManager, DATEPICKER_TAG)
-        }
-    }
-
-    private fun updateProfile(){
-        db.collection("users").document(viewModel.email).set(
-            hashMapOf(
-                "name" to viewModel.name,
-                "birthdate" to viewModel.birthdate,
-                "weight" to viewModel.weight
-            )
-        ).addOnCompleteListener {
-
-            Toast.makeText(
-                activity,
-                if (it.isSuccessful) R.string.profile_updated_ok_message else R.string.signup_error_message,
-                Toast.LENGTH_SHORT
-            ).show()
         }
     }
 }

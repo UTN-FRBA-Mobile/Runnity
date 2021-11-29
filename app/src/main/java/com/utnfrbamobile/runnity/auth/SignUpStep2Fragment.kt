@@ -15,11 +15,10 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.utnfrbamobile.runnity.databinding.FragmentSignUpStep2Binding
 import java.util.*
 import com.google.android.material.datepicker.CompositeDateValidator
-
 import com.google.android.material.datepicker.DateValidatorPointForward
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.utnfrbamobile.runnity.R
+import com.utnfrbamobile.runnity.util.DatePickerUtil
+import com.utnfrbamobile.runnity.util.FirebaseWrapper
 
 
 class SignUpStep2Fragment : Fragment() {
@@ -29,10 +28,8 @@ class SignUpStep2Fragment : Fragment() {
 
     private lateinit var viewModel: SignUpViewModel
 
-    private val db = FirebaseFirestore.getInstance()
-
     private var dateSelected = MaterialDatePicker.todayInUtcMilliseconds()
-    private val datePicker = buildDatePicker()
+    private val datePicker = DatePickerUtil.buildDatePicker(dateSelected)
     private val DATEPICKER_TAG = "BIRTHDATE_DATEPICKER"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +42,7 @@ class SignUpStep2Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        FirebaseWrapper.setCurrentActivity(requireActivity())
         viewModel = ViewModelProvider(requireActivity()).get(SignUpViewModel::class.java)
 
         binding.name.setOnEditorActionListener { v, actionId, event ->
@@ -76,61 +74,18 @@ class SignUpStep2Fragment : Fragment() {
                 name.isEmpty() -> Toast.makeText(activity, R.string.empty_name_message, Toast.LENGTH_SHORT).show()
                 birthdate.isEmpty() -> Toast.makeText(activity, R.string.empty_birthdate_message, Toast.LENGTH_SHORT).show()
                 weight.isEmpty() -> Toast.makeText(activity, R.string.empty_weight_message, Toast.LENGTH_SHORT).show()
-                else -> {
-                    viewModel.name = name
-                    viewModel.birthdate = dateSelected
-                    viewModel.weight = weight
-                    saveProfile()
+                else -> FirebaseWrapper.saveProfile(viewModel.email, name, dateSelected, weight).addOnCompleteListener {
+                    if (it.isSuccessful){
+                        findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
+                    }
                 }
             }
         }
     }
 
-    private fun buildDatePicker(): MaterialDatePicker<Long>{
-        val today = MaterialDatePicker.todayInUtcMilliseconds()
-        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-
-        calendar.timeInMillis = today
-        calendar[Calendar.YEAR] = calendar[Calendar.YEAR] - 120
-        val a120YearsAgo = calendar.timeInMillis
-
-        val validators = CompositeDateValidator.allOf(listOf(
-            DateValidatorPointForward.from(a120YearsAgo),
-            DateValidatorPointBackward.now()
-        ))
-
-        val constraintsBuilder = CalendarConstraints.Builder()
-            .setStart(a120YearsAgo)
-            .setEnd(today)
-            .setValidator(validators)
-
-        return MaterialDatePicker.Builder.datePicker()
-            .setTitleText(R.string.birthdate)
-            .setSelection(dateSelected)
-            .setCalendarConstraints(constraintsBuilder.build())
-            .build()
-    }
-
     private fun showDatePicker(){
         if(datePicker.isVisible.not()){
             datePicker.show(childFragmentManager, DATEPICKER_TAG)
-        }
-    }
-
-    private fun saveProfile(){
-        db.collection("users").document(viewModel.email).set(
-            hashMapOf(
-                "name" to viewModel.name,
-                "birthdate" to viewModel.birthdate,
-                "weight" to viewModel.weight
-            )
-        ).addOnCompleteListener {
-            if (it.isSuccessful){
-                findNavController().navigate(SignUpStep2FragmentDirections.actionSignUpStep2FragmentToCompetitionMenuFragment())
-            }
-            else{
-                Toast.makeText(activity, R.string.signup_error_message, Toast.LENGTH_SHORT).show()
-            }
         }
     }
 }

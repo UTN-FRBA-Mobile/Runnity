@@ -17,12 +17,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="new_race_button">Nueva carrera</string>
     <string name="new_race_button_label">Elegí contra quién querés correr</string>
-    <string name="pending_label">Pendientes</string>
+    <string name="races_label">Careras</string>
     <string name="pending_race_label">Carrera Pendiente</string>
     <string name="pending_race_detail">5K | Juan Pérez VS Esteban Quito</string>
     <string name="participate_button_label">PARTICIPAR</string>
 
     <string name="timezone">UTC</string>
+
+    <!-- Create competition -->
+    <string name="adversaries_label">Contrincantes</string>
+    <string name="create_competition_button_text">CREAR CARRERA</string>
+
     <!-- Auth -->
     <string name="sign_in">Ingreso</string>
     <string name="register_label">Registro</string>
@@ -56,5 +61,9 @@
     <string name="empty_weight_message">Ingrese su peso</string>
     <string name="login_error_message">Hubo un problema al loguearse, revise las credenciales</string>
     <string name="signup_error_message">Hubo un problema al intentar crear el usuario</string>
-    <string name="profile_updated_ok_message">Su perfil fue actualizado correctamente</string>
+    <string name="profile_update_ok_message">Su perfil se guardó correctamente</string>
+    <string name="profile_update_error_message">Ocurrio un problema al intentar guardar su perfil</string>
+    <string name="adversary_unselected_message">Seleccione a su contrincante</string>
+    <string name="race_creation_ok_message">La competencia fue creada exitosamente</string>
+    <string name="race_creation_error_message">Hubo un problema al intentar crear la competencia. Intente nuevamente.</string>
 </resources>
