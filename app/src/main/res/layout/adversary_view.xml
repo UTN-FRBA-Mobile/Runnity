@@ -7,14 +7,12 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="horizontal"
-    android:layout_marginTop="20dp"
     android:background="@drawable/pending_race_box">
 
     <TextView
         android:id="@+id/adversary_name_label"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
         android:gravity="center"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/pending_race_label"
