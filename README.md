@@ -1,2 +1,8 @@
 # Runnity
-Runnity
+Con Runnity podés desafiar a otra persona a correr, sin importar en qué parte del mundo se encuentre. La aplicación te permite correr donde quieras y cuando quieras, sin necesidad de hacerlo al mismo tiempo que tu rival. La victoria será para la persona que corra la distancia desafiada en el menor tiempo.
+
+![alt text](https://i.imgur.com/EJEqJ1L.jpg)
+![alt text](https://i.imgur.com/0BTiAHP.jpg)
+![alt text](https://i.imgur.com/rEyq5UY.jpg)
+![alt text](https://i.imgur.com/iPPzdzc.jpg)
+![alt text](https://i.imgur.com/1BVjQQG.jpg)
