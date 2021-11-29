@@ -30,6 +30,7 @@ import com.utnfrbamobile.runnity.work.RunnityWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
@@ -49,6 +50,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private var raceStarted: Boolean = false
 
     private lateinit var durationChronometer: Chronometer
+
+    private lateinit var workerId:UUID
 
     private val listenLocationUpdates = Observer { newLocations: List<LocationEntity> ->
         drawPrimaryLinePath(newLocations)
@@ -78,14 +81,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         mapButton.setOnClickListener {
             if (!raceStarted) {
-                RunnityWorker.enqueue(requireContext())
+                workerId = RunnityWorker.enqueue(requireContext())
                 mapButton.setBackgroundColor(Color.MAGENTA)
                 mapButton.text = getString(R.string.end_button)
 
                 durationChronometer.base = SystemClock.elapsedRealtime()
                 durationChronometer.start()
             } else {
-                //WorkManager.getInstance(requireContext()).createCancelPendingIntent(id)
+                WorkManager.getInstance(requireContext()).cancelWorkById(workerId)
                 mapButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.button_color))
                 mapButton.text = getString(R.string.start_button)
 
