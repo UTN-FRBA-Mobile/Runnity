@@ -3,11 +3,13 @@ package com.utnfrbamobile.runnity.ui
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
@@ -24,15 +26,22 @@ import com.utnfrbamobile.runnity.work.RunnityWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 
 class MapFragment : Fragment(), OnMapReadyCallback {
 
     private var map : GoogleMap? = null
 
-    private lateinit var runnutyDao: RunnityDao
+    private lateinit var runnityDao: RunnityDao
     private lateinit var fetchLocationUseCase : FetchLocationUseCase
     private var marker: Marker? = null
     private var polyline: Polyline? = null
+
+    private var previousLatitude: Double = 0.0
+    private var previousLongitude: Double = 0.0
+
+    private var distance: Float = 0F
+    private lateinit var distanceTextView: TextView
 
     private val listenLocationUpdates = Observer { newLocations: List<LocationEntity> ->
         drawPrimaryLinePath(newLocations)
@@ -44,7 +53,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun bind() = context?.let {
-        runnutyDao = RunnityDaoSingleton.getInstance(requireContext())
+        runnityDao = RunnityDaoSingleton.getInstance(requireContext())
         fetchLocationUseCase = FetchLocationUseCase(requireContext().applicationContext)
     }
 
@@ -60,7 +69,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         startButton.setOnClickListener {
             RunnityWorker.enqueue(requireContext())
         }
-        runnutyDao.getAllLiveData().observe(viewLifecycleOwner, listenLocationUpdates)
+        runnityDao.getAllLiveData().observe(viewLifecycleOwner, listenLocationUpdates)
+
+        distanceTextView = view.findViewById(R.id.distanceTextView)
     }
 
     override fun onMapReady(map: GoogleMap) {
@@ -112,9 +123,36 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val lastPoint = LatLng(lastLocation.latitude, lastLocation.longitude)
         marker?.position = lastPoint
         map?.moveCamera(CameraUpdateFactory.newLatLngZoom(lastPoint, ZOOM_LEVEL))
+
+        accumulateDistance(lastPoint.latitude, lastPoint.longitude)
+    }
+
+    private fun accumulateDistance(currentLatitude: Double, currentLongitude: Double){
+        if (previousLatitude == 0.0 || previousLongitude == 0.0) {
+            previousLatitude = currentLatitude
+            previousLongitude = currentLongitude
+            return
+        }
+
+        val previousLocation: Location = Location("previous")
+        val currentLocation: Location = Location("current")
+
+        previousLocation.latitude = previousLatitude
+        previousLocation.longitude = previousLongitude
+
+        currentLocation.latitude = currentLatitude
+        currentLocation.longitude = currentLongitude
+
+        distance += previousLocation.distanceTo(currentLocation)
+
+        previousLatitude = currentLatitude
+        previousLongitude = currentLongitude
+
+        distanceTextView.text = String.format("%.02f", distance * M_TO_KM)
     }
 
     companion object {
         private const val ZOOM_LEVEL = 17f
+        private const val M_TO_KM = 0.001
     }
 }

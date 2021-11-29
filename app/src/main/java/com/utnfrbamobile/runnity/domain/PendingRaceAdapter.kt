@@ -21,7 +21,6 @@ class PendingRaceAdapter: RecyclerView.Adapter<PendingRaceAdapter.ViewHolder>() 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.detail.text = item.category + " | " + userName + " VS " + item.opponent
-
         holder.participateButton.setOnClickListener {
             // (Pendiente)
             /*val intent: Intent = Intent()
