@@ -1,5 +1,6 @@
 package com.utnfrbamobile.runnity.ui
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -51,6 +52,26 @@ class CompetitionDetailFragment : Fragment() {
         }
         seeResultsLink.setOnClickListener{
             it.findNavController().navigate(R.id.action_competitionDetailFragment_to_competitionResultsFragment)
+        }
+
+        val user1: TextView = view.findViewById(R.id.userNameLabel)
+        val user2: TextView = view.findViewById(R.id.opponentNameLabel)
+        val user1RaceState: TextView = view.findViewById(R.id.userRaceStateLabel)
+        val user2RaceState: TextView = view.findViewById(R.id.opponentRaceStateLabel)
+
+        user1.text = user1Name
+        user2.text = user2Name
+
+        if (user1Duration > 0) {
+            user1RaceState.text = "Completo"
+        } else {
+            user1RaceState.text = "Pendiente"
+        }
+
+        if (user2Duration > 0) {
+            user2RaceState.text = "Completo"
+        } else {
+            user2RaceState.text = "Pendiente"
         }
     }
 }
