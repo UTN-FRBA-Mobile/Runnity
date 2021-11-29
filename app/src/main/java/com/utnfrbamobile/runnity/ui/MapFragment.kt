@@ -16,8 +16,9 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.*
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.work.WorkManager
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
@@ -61,6 +62,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var workerId:UUID
 
+    private var raceFinished: Boolean = false
+
     private val listenLocationUpdates = Observer { newLocations: List<LocationEntity> ->
         drawPrimaryLinePath(newLocations)
     }
@@ -92,6 +95,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         rhythmChronometer = view.findViewById(R.id.rhythmChronometer)
 
         mapButton.setOnClickListener {
+            if (raceFinished){
+                findNavController().popBackStack()
+            }
+
             if (!raceStarted) {
                 workerId = RunnityWorker.enqueue(requireContext())
                 mapButton.setBackgroundColor(Color.MAGENTA)
@@ -99,17 +106,30 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
                 durationChronometer.base = SystemClock.elapsedRealtime()
                 durationChronometer.start()
+
+                raceStarted = !raceStarted
+
+                runnityDao.getAllLiveData().observe(viewLifecycleOwner, listenLocationUpdates)
             } else {
+
                 WorkManager.getInstance(requireContext()).cancelWorkById(workerId)
                 mapButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.button_color))
-                mapButton.text = getString(R.string.start_button)
+                mapButton.text = "VER COMPETENCIA"
+                raceFinished = true
 
                 durationChronometer.stop()
                 raceDuration = SystemClock.elapsedRealtime() - durationChronometer.base
+
+
+                //guardar datos en firebase acá
+
+                lifecycleScope.launch(Dispatchers.IO){
+                    runnityDao.deleteAll()
+                }
+
             }
-            raceStarted = !raceStarted
+
         }
-        runnityDao.getAllLiveData().observe(viewLifecycleOwner, listenLocationUpdates)
 
         distanceTextView = view.findViewById(R.id.distanceTextView)
     }
